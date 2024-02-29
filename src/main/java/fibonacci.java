@@ -78,8 +78,18 @@ public class fibonacci {
         return a;
     }
 
+    public static int fibo_recursive(int n) {
+        if (n == 0) {
+            return 0;
+        } else if (n == 1) {
+            return 1;
+        } else {
+            return fibo_recursive(n-1) + fibo_recursive(n-2);
+        }
+    }
+
     public static void main(String[] args) {
-        Result res = fiboList(5);
+        Result res = fiboList(7);
 
         if (res.isListResult()) {
             List<Integer> listVal = res.getListValue();
@@ -92,6 +102,8 @@ public class fibonacci {
         System.out.println(fiboWzor(7));
 
         System.out.println(fiboEasy(7));
+
+        System.out.println(fibo_recursive(7));
 
     }
 }
