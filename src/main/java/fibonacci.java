@@ -1,3 +1,4 @@
+import java.lang.Math;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +52,34 @@ public class fibonacci {
         return new Result(result.get(n - 1));
     }
 
+    public static int fiboWzor(int n) {
+        double res = (Math.pow(1 + Math.sqrt(5), n) - Math.pow(1 - Math.sqrt(5), n)) / (Math.pow(2, n) * Math.sqrt(5));
+        return (int)res;
+    }
+
+    public static int fiboEasy(int n) {
+        int a = 0;
+        int b = 1;
+        int temp;
+        int i;
+
+        for(i = 1; i < n+1; i++){
+            // Using temporary variable to store a-value
+            // temp = a;
+            // a = b;
+            // b = temp + b;
+
+            // Using binary operators
+            b = a ^ b;
+            a = a ^ b;
+            b = a ^ b;
+            a = a + b;
+        }
+        return a;
+    }
+
     public static void main(String[] args) {
-        Result res = fiboList(7);
+        Result res = fiboList(5);
 
         if (res.isListResult()) {
             List<Integer> listVal = res.getListValue();
@@ -61,5 +88,10 @@ public class fibonacci {
             int intVal = res.getIntValue();
             System.out.println("Wartość całkowita: " + intVal);
         }
+
+        System.out.println(fiboWzor(7));
+
+        System.out.println(fiboEasy(7));
+
     }
 }
